@@ -1,0 +1,40 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Production build output
+dist/
+dist-ssr/
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.*.local
+
+# Editor & OS files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.DS_Store
+Thumbs.db
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Large video raw files exceeding GitHub's 100MB hard limit
+# (Kept safely on local disk in public/assets/videos/)
+public/assets/videos/lv_0_20260224110610.mp4
+public/assets/videos/lv_0_20260225181427.mp4
+public/assets/videos/lv_0_20260303210915.mp4
+public/assets/videos/lv_0_20260306180015.mp4
