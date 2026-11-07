@@ -46,6 +46,9 @@ export default function About() {
                 src={displayImage}
                 alt={`${personalInfo.name || 'Video Editor'} - About`}
                 className="about-photo-img"
+                loading="lazy"
+                decoding="async"
+                crossOrigin="anonymous"
                 onError={() => setImgError(true)}
               />
             </div>

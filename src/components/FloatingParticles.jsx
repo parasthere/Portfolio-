@@ -1,125 +1,73 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useMemo } from 'react';
 
 /**
- * High-performance, lightweight floating purple particles canvas
- * Runs at 60fps with zero lag and subtle ambient motion
+ * FloatingParticles Component
+ * ==============================================================================
+ * High-performance, lightweight floating purple particles built with hardware-
+ * accelerated CSS keyframes. Zero canvas overhead, 100% compatible with Chrome
+ * extensions (such as Swarm Rebuild) without triggering full-screen canvas
+ * screen-captures or interfering with DOM tree analysis.
+ * ==============================================================================
  */
 export default function FloatingParticles() {
-  const canvasRef = useRef(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const ctx = canvas.getContext('2d');
-    let animationFrameId;
-    let width = (canvas.width = window.innerWidth);
-    let height = (canvas.height = window.innerHeight);
-
-    // Particle settings
-    const particleCount = Math.min(Math.floor(width / 30), 45);
-    const particles = [];
-
+  // Generate a deterministic set of ambient floating particles
+  const particles = useMemo(() => {
     const colors = [
-      'rgba(130, 71, 255, 0.4)',
-      'rgba(155, 107, 255, 0.35)',
-      'rgba(214, 199, 255, 0.25)',
-      'rgba(88, 30, 199, 0.3)'
+      'rgba(130, 71, 255, 0.45)',
+      'rgba(155, 107, 255, 0.4)',
+      'rgba(214, 199, 255, 0.3)',
+      'rgba(88, 30, 199, 0.35)',
     ];
 
-    class Particle {
-      constructor() {
-        this.reset();
-      }
-
-      reset() {
-        this.x = Math.random() * width;
-        this.y = Math.random() * height;
-        this.radius = Math.random() * 2.2 + 0.8;
-        this.speedX = (Math.random() - 0.5) * 0.4;
-        this.speedY = (Math.random() - 0.5) * 0.4;
-        this.color = colors[Math.floor(Math.random() * colors.length)];
-        this.alpha = Math.random() * 0.6 + 0.2;
-        this.pulseSpeed = Math.random() * 0.02 + 0.005;
-      }
-
-      update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-
-        // Wrap around boundaries
-        if (this.x < 0) this.x = width;
-        if (this.x > width) this.x = 0;
-        if (this.y < 0) this.y = height;
-        if (this.y > height) this.y = 0;
-
-        // Pulse alpha
-        this.alpha += Math.sin(Date.now() * this.pulseSpeed) * 0.005;
-        this.alpha = Math.max(0.1, Math.min(0.7, this.alpha));
-      }
-
-      draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = this.color;
-        ctx.shadowBlur = 10;
-        ctx.shadowColor = '#8247FF';
-        ctx.fill();
-        ctx.shadowBlur = 0;
-      }
-    }
-
-    for (let i = 0; i < particleCount; i++) {
-      particles.push(new Particle());
-    }
-
-    // Connect close particles with subtle lavender lines
-    function drawConnections() {
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-
-          if (dist < 120) {
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(130, 71, 255, ${0.12 * (1 - dist / 120)})`;
-            ctx.lineWidth = 0.8;
-            ctx.stroke();
-          }
-        }
-      }
-    }
-
-    const render = () => {
-      ctx.clearRect(0, 0, width, height);
-
-      particles.forEach((p) => {
-        p.update();
-        p.draw();
-      });
-
-      drawConnections();
-      animationFrameId = requestAnimationFrame(render);
-    };
-
-    render();
-
-    const handleResize = () => {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-      cancelAnimationFrame(animationFrameId);
-    };
+    return Array.from({ length: 24 }).map((_, i) => ({
+      id: i,
+      left: `${(i * 4.17 + (i % 3) * 2.5) % 96 + 2}%`,
+      top: `${(i * 7.83 + (i % 5) * 4.2) % 94 + 3}%`,
+      size: `${2 + (i % 4) * 1.2}px`,
+      color: colors[i % colors.length],
+      duration: `${14 + (i % 7) * 2.5}s`,
+      delay: `${-(i % 8) * 1.8}s`,
+      driftX: `${(i % 2 === 0 ? 1 : -1) * (18 + (i % 5) * 8)}px`,
+      driftY: `${-30 - (i % 6) * 12}px`,
+    }));
   }, []);
 
-  return <canvas ref={canvasRef} className="particles-canvas" />;
+  return (
+    <div
+      className="floating-particles-wrap"
+      aria-hidden="true"
+      style={{
+        position: 'fixed',
+        inset: 0,
+        width: '100vw',
+        height: '100vh',
+        pointerEvents: 'none',
+        zIndex: 0,
+        overflow: 'hidden',
+      }}
+    >
+      {particles.map((p) => (
+        <span
+          key={p.id}
+          className="particle-dot"
+          style={{
+            position: 'absolute',
+            left: p.left,
+            top: p.top,
+            width: p.size,
+            height: p.size,
+            borderRadius: '50%',
+            backgroundColor: p.color,
+            boxShadow: `0 0 10px ${p.color}`,
+            pointerEvents: 'none',
+            animation: `ambientParticleDrift ${p.duration} ease-in-out infinite alternate ${p.delay}`,
+            transform: 'translate3d(0, 0, 0)',
+            willChange: 'transform, opacity',
+            '--drift-x': p.driftX,
+            '--drift-y': p.driftY,
+          }}
+        />
+      ))}
+    </div>
+  );
 }
-

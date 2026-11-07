@@ -58,7 +58,9 @@ export default function WorkGallery() {
               const safeTags = Array.isArray(project.tags) ? project.tags : [];
               const safeThumbnail = project.thumbnail || DEFAULT_FALLBACK_THUMB;
               const isHovered = hoveredProjectId === project.id;
-              const isDirectVideo = project.videoType === 'direct' && project.videoUrl;
+              const cleanVideoUrl = (project.videoUrl || '').replace(/\\/g, '/');
+              const normalizedVideoSrc = cleanVideoUrl.startsWith('/') || cleanVideoUrl.startsWith('http') || !cleanVideoUrl ? cleanVideoUrl : `/${cleanVideoUrl}`;
+              const isDirectVideo = (project.videoType === 'direct' || cleanVideoUrl.endsWith('.mp4') || cleanVideoUrl.endsWith('.webm') || cleanVideoUrl.includes('/assets/videos/')) && Boolean(cleanVideoUrl);
 
               return (
                 <div
@@ -83,6 +85,8 @@ export default function WorkGallery() {
                       alt={project.title || 'Video project thumbnail'}
                       className="project-thumb"
                       loading="lazy"
+                      decoding="async"
+                      crossOrigin="anonymous"
                       onError={(e) => {
                         if (e.currentTarget.src !== DEFAULT_FALLBACK_THUMB) {
                           e.currentTarget.src = DEFAULT_FALLBACK_THUMB;
@@ -93,12 +97,16 @@ export default function WorkGallery() {
                     {/* On-Hover Live Video Preview for Direct MP4 Clips */}
                     {isHovered && isDirectVideo && (
                       <video
-                        src={project.videoUrl}
+                        src={normalizedVideoSrc}
                         muted
                         loop
                         autoPlay
                         playsInline
+                        crossOrigin="anonymous"
                         className="project-hover-video"
+                        onError={(e) => {
+                          e.currentTarget.style.display = 'none';
+                        }}
                       />
                     )}
 

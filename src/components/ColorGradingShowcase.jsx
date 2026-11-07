@@ -19,7 +19,7 @@ export default function ColorGradingShowcase() {
   }, []);
 
   const handleTouchMove = useCallback((e) => {
-    if (!isDragging) return;
+    if (!isDragging || !e.touches || !e.touches[0]) return;
     handleMove(e.touches[0].clientX);
   }, [isDragging, handleMove]);
 
@@ -36,7 +36,7 @@ export default function ColorGradingShowcase() {
     if (isDragging) {
       window.addEventListener('mousemove', handleMouseMove);
       window.addEventListener('mouseup', handleMouseUp);
-      window.addEventListener('touchmove', handleTouchMove);
+      window.addEventListener('touchmove', handleTouchMove, { passive: true });
       window.addEventListener('touchend', handleMouseUp);
     }
     return () => {
@@ -94,6 +94,8 @@ export default function ColorGradingShowcase() {
               alt="Final Color Graded Shot"
               className="comparison-img graded-img"
               draggable="false"
+              decoding="async"
+              crossOrigin="anonymous"
             />
             <span className="comparison-label label-after">
               {colorGrading.afterLabel || 'Final Grade'}
@@ -109,6 +111,8 @@ export default function ColorGradingShowcase() {
                 alt="Raw LOG Camera Shot"
                 className="comparison-img log-img"
                 draggable="false"
+                decoding="async"
+                crossOrigin="anonymous"
                 style={{
                   width: containerRef.current ? `${containerRef.current.offsetWidth}px` : '100%',
                 }}

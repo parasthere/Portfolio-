@@ -194,21 +194,42 @@
 }
 
 /* --------------------------------------------------------------------------
-   2. FLOATING CANVAS PARTICLES
+   2. FLOATING PURPLE PARTICLES (CSS HARDWARE ACCELERATED)
    -------------------------------------------------------------------------- */
-.particles-canvas {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+.floating-particles-wrap {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
   pointer-events: none;
   z-index: 1;
+  overflow: hidden;
+}
+
+.particle-dot {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 50%;
+  will-change: transform, opacity;
+}
+
+@keyframes ambientParticleDrift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate3d(var(--drift-x, 20px), var(--drift-y, -40px), 0) scale(1.3);
+    opacity: 0.35;
+  }
 }
 
 /* --------------------------------------------------------------------------
    GLOBAL CINEMATIC PURPLE BACKGROUND SYSTEM
-   Displays the COMPLETE background.jpg across all website sections & pages
+   Pure CSS ambient dark purple glow system across all sections
    -------------------------------------------------------------------------- */
 .global-bg-container {
   position: fixed;
@@ -218,60 +239,10 @@
   overflow: hidden;
   pointer-events: none;
   z-index: 0;
-  background-color: var(--bg-dark);
+  background-color: transparent;
 }
 
-/* Layer 1: Ambient blurred reflection to fill any letterbox/empty space */
-.global-bg-ambient-fill {
-  position: absolute;
-  inset: -30px;
-  width: calc(100% + 60px);
-  height: calc(100% + 60px);
-  background-size: cover;
-  background-repeat: no-repeat;
-  filter: blur(50px) brightness(0.3) saturate(1.2);
-  opacity: 0.65;
-  transform: scale(1.05);
-  will-change: transform;
-}
-
-/* Layer 2: COMPLETE, uncropped background.jpg preserving aspect ratio (contain) */
-.global-bg-main-image {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  background-size: contain;
-  background-repeat: no-repeat;
-  filter: brightness(0.68) contrast(1.15) saturate(1.15);
-  /* Gentle radial feathering on the outermost edges so it melts seamlessly into the ambient backdrop */
-  -webkit-mask-image: radial-gradient(ellipse 96% 96% at 50% 50%, black 75%, transparent 100%);
-  mask-image: radial-gradient(ellipse 96% 96% at 50% 50%, black 75%, transparent 100%);
-  will-change: transform, opacity;
-  animation: globalBgGentleBreath 24s ease-in-out infinite alternate;
-}
-
-/* Layer 3: Deep Black & Dark Purple Gradient Overlay for text readability */
-.global-bg-overlay {
-  position: absolute;
-  inset: 0;
-  background: 
-    /* Horizontal readability gradient: darker sides, soft center */
-    linear-gradient(90deg, rgba(13, 10, 20, 0.88) 0%, rgba(13, 10, 20, 0.45) 50%, rgba(13, 10, 20, 0.88) 100%),
-    /* Vertical atmosphere gradient */
-    linear-gradient(180deg, rgba(13, 10, 20, 0.82) 0%, rgba(26, 12, 48, 0.55) 35%, rgba(20, 10, 38, 0.6) 70%, rgba(13, 10, 20, 0.9) 100%);
-}
-
-/* Layer 4: Rich Atmospheric Purple Tint */
-.global-bg-purple-tint {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 50% 40%, rgba(130, 71, 255, 0.22) 0%, rgba(91, 33, 182, 0.1) 50%, transparent 80%),
-              linear-gradient(135deg, rgba(130, 71, 255, 0.14) 0%, rgba(13, 10, 20, 0.35) 100%);
-  mix-blend-mode: screen;
-}
-
-/* Layer 5: Soft Blurred Purple Radial Glow Light Effects */
+/* Ambient Blurred Purple Radial Glow Light Effects */
 .global-bg-glow {
   position: absolute;
   border-radius: 50%;
@@ -295,24 +266,6 @@
   right: -6%;
   background: radial-gradient(circle, rgba(168, 85, 247, 0.32) 0%, rgba(126, 34, 206, 0.15) 45%, transparent 70%);
   animation: globalPurplePulse 12s ease-in-out infinite alternate-reverse;
-}
-
-/* Layer 6: Subtle Perimeter Vignette */
-.global-bg-vignette {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse at center, transparent 38%, rgba(13, 10, 20, 0.52) 75%, rgba(13, 10, 20, 0.94) 100%);
-  pointer-events: none;
-}
-
-/* Animations */
-@keyframes globalBgGentleBreath {
-  0% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(1.03);
-  }
 }
 
 @keyframes globalPurplePulse {
@@ -348,15 +301,7 @@
     right: -20%;
   }
 
-  .global-bg-overlay {
-    background: 
-      linear-gradient(180deg, rgba(13, 10, 20, 0.88) 0%, rgba(26, 12, 48, 0.68) 40%, rgba(13, 10, 20, 0.92) 80%, #0D0A14 100%),
-      rgba(13, 10, 20, 0.72);
-  }
 
-  .global-bg-main-image {
-    animation: none; /* Conserve mobile battery & CPU */
-  }
 }
 
 /* --------------------------------------------------------------------------
@@ -642,11 +587,10 @@
   font-weight: 800;
   font-family: var(--font-display);
   color: #FFFFFF;
-  line-height: 1;
+  line-height: 1.1;
   margin-bottom: 0.5rem;
-  background: linear-gradient(135deg, #FFFFFF 0%, var(--accent-lavender) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  display: block;
+  text-shadow: 0 0 24px rgba(130, 71, 255, 0.55), 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .stat-label {
@@ -1756,8 +1700,10 @@
   font-size: 2rem;
   font-weight: 800;
   font-family: var(--font-display);
+  color: var(--accent-lavender);
   background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-dark) 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 

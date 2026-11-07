@@ -43,11 +43,6 @@ export const portfolioData = {
     // Availability badge text shown in Hero
     availabilityBadge: "Available for Freelance & Remote Projects",
 
-    // Global website background image settings (uses background.jpg across all sections)
-    globalBackgroundImage: "/assets/images/background.jpg",
-    globalBackgroundPosition: "center center",
-    heroBackgroundImage: "/assets/images/background.jpg",
-    heroBackgroundPosition: "center center",
 
     // Profile photograph path.
     // Preserves your natural face, facial features, and appearance without stretching or cropping.
@@ -187,7 +182,7 @@ export const portfolioData = {
       description: "High-octane automotive film cut featuring aggressive sound design, precision speed ramps, and mood-drenched teal & purple anamorphic grade.",
       thumbnail: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80",
       videoType: "direct",
-      videoUrl: "/assets/videos/Sequence 01.mp4",
+      videoUrl: "/assets/videos/lv_0_20260308104631.mp4",
       tags: ["Cinematic", "Speed Ramping", "Color Grade", "Sound Design"],
       featured: true
     },
@@ -212,21 +207,21 @@ export const portfolioData = {
       duration: "2:15",
       description: "Atmospheric narrative short cut using pacing to build tension, custom neon titles, and multi-layered Foley sound effects with rich color contrast.",
       thumbnail: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1200&q=80",
-      videoType: "youtube",
-      videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+      videoType: "direct",
+      videoUrl: "/assets/videos/lv_0_20260308104826.mp4",
       tags: ["Cinematic", "Storytelling", "Visual FX", "4K HDR"],
       featured: true
     },
     {
       id: "project-4",
       title: "High-Engagement Tech Breakdown",
-      category: "YouTube",
+      category: "Reels",
       aspectRatio: "16:9",
       duration: "8:30",
       description: "Fast-paced YouTube video with custom 2D motion graphics, engaging B-roll overlays, visual zooms, and subtle comedic timing.",
       thumbnail: "https://images.unsplash.com/photo-1526738549149-8e07eca6c147?auto=format&fit=crop&w=1200&q=80",
-      videoType: "youtube",
-      videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+      videoType: "direct",
+      videoUrl: "/assets/videos/lv_0_20260306180015.mp4",
       tags: ["YouTube", "Motion Graphics", "Retention Hooks", "Premiere Pro"],
       featured: false
     },
@@ -245,40 +240,27 @@ export const portfolioData = {
     },
     {
       id: "project-6",
-      title: "Fitness & Motivation 9:16 Viral Reel",
+      title: "16:9 Viral Reel",
       category: "Reels",
       aspectRatio: "9:16",
       duration: "0:20",
       description: "Aggressive motivational cut featuring hard audio stops, glitch transitions, speed ramps, and high-contrast fitness grading.",
       thumbnail: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=800&q=80",
       videoType: "direct",
-      videoUrl: "/assets/videos/lv_0_20260308104103.mp4",
+      videoUrl: "/assets/videos/lv_0_20260303210915.mp4",
       tags: ["Reels", "Glitch FX", "Rhythm Sync", "CapCut / Premiere"],
       featured: false
     },
     {
-      id: "project-7",
-      title: "The Creator Economy • Documentary Style Edit",
-      category: "YouTube",
-      aspectRatio: "16:9",
-      duration: "12:40",
-      description: "Deep dive video essay with custom paper textures, animated archive footage, immersive ambient sound design, and clean chapter transitions.",
-      thumbnail: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=1200&q=80",
-      videoType: "youtube",
-      videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-      tags: ["Documentary", "Paper Textures", "After Effects", "Sound Mixing"],
-      featured: false
-    },
-    {
       id: "project-8",
-      title: "Electric Pulse • Energy Drink Commercial",
+      title: "Electric Pulse",
       category: "Commercial",
       aspectRatio: "16:9",
       duration: "0:35",
       description: "High-tempo commercial driven by electro soundtrack, kinetic typography, flash frames, and dynamic neon purple lighting accents.",
       thumbnail: "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=1200&q=80",
       videoType: "direct",
-      videoUrl: "/assets/videos/Sequence 01.mp4",
+      videoUrl: "/assets/videos/lv_0_20260224110610.mp4",
       tags: ["Commercial", "Dynamic Transitions", "Color Pop", "3D Camera"],
       featured: false
     }

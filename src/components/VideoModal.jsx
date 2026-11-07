@@ -11,7 +11,10 @@ function parseVideoSource(project) {
     return { type: 'invalid', url: '' };
   }
 
-  const rawUrl = project.videoUrl.trim();
+  let rawUrl = project.videoUrl.trim().replace(/\\/g, '/');
+  if (rawUrl.startsWith('assets/')) {
+    rawUrl = '/' + rawUrl;
+  }
   const explicitType = project.videoType ? project.videoType.toLowerCase() : '';
 
   // 1. Direct MP4/WebM video file (local or web)
@@ -96,7 +99,7 @@ export default function VideoModal({ project, onClose }) {
     window.addEventListener('keydown', handleKeyDown);
 
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = '';
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [onClose]);
@@ -155,6 +158,7 @@ export default function VideoModal({ project, onClose }) {
               controls
               autoPlay
               playsInline
+              crossOrigin="anonymous"
               onError={() => setLoadError(true)}
             >
               Your browser does not support the video tag.
@@ -164,6 +168,7 @@ export default function VideoModal({ project, onClose }) {
               src={videoSource.url}
               title={project.title || 'Video Player'}
               className="modal-iframe-element"
+              loading="lazy"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             />

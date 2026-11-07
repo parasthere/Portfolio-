@@ -1,53 +1,33 @@
-import React from 'react';
-import { portfolioData } from '../data/portfolioData';
+import React, { useEffect } from 'react';
 
 /**
  * GlobalBackground Component
  * ==============================================================================
- * Displays the COMPLETE background.jpg image across the entire website with
- * full aspect-ratio preservation, zero distortion, zero cut-off, matching dark
- * purple ambient fill for letterbox areas, and a cinematic purple atmospheric
- * lighting stack.
+ * Manages the clean, premium CSS-based cinematic purple background system.
+ * Pure CSS radial gradients & soft ambient purple glow.
+ * Zero external background photograph, zero zooming, zero layout shifts.
+ * 100% compatible with Swarm Rebuilt and responsive across all viewports.
  * ==============================================================================
  */
 export default function GlobalBackground() {
-  const personalInfo = portfolioData.personalInfo || {};
-  const bgImage = personalInfo.globalBackgroundImage || personalInfo.heroBackgroundImage || '/assets/images/background.jpg';
-  const bgPosition = personalInfo.globalBackgroundPosition || personalInfo.heroBackgroundPosition || 'center center';
+  // Clear any legacy inline background image styling from document.body
+  // so the pure CSS background defined in index.css renders cleanly and stably.
+  useEffect(() => {
+    const body = document.body;
+    if (body) {
+      body.style.backgroundImage = '';
+      body.style.backgroundSize = '';
+      body.style.backgroundPosition = '';
+      body.style.backgroundRepeat = '';
+      body.style.backgroundAttachment = '';
+    }
+  }, []);
 
   return (
     <div className="global-bg-container" aria-hidden="true">
-      {/* Layer 1: Ambient Blurred Backdrop to fill empty/letterbox spaces with exact matching colors */}
-      <div
-        className="global-bg-ambient-fill"
-        style={{
-          backgroundImage: `url("${bgImage}")`,
-          backgroundPosition: bgPosition,
-        }}
-      />
-
-      {/* Layer 2: COMPLETE, Uncropped background.jpg preserving aspect ratio (contain) */}
-      <div
-        className="global-bg-main-image"
-        style={{
-          backgroundImage: `url("${bgImage}")`,
-          backgroundPosition: bgPosition,
-        }}
-      />
-
-      {/* Layer 3: Deep Black & Dark Purple Gradient Overlay for text readability */}
-      <div className="global-bg-overlay" />
-
-      {/* Layer 4: Rich Atmospheric Purple Tint */}
-      <div className="global-bg-purple-tint" />
-
-      {/* Layer 5: Soft Blurred Purple Radial Glow Light Effects */}
+      {/* Soft Blurred Ambient Purple Glow Orbs */}
       <div className="global-bg-glow global-bg-glow-1" />
       <div className="global-bg-glow global-bg-glow-2" />
-
-      {/* Layer 6: Subtle Perimeter Vignette */}
-      <div className="global-bg-vignette" />
     </div>
   );
 }
-

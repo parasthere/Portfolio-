@@ -134,6 +134,8 @@ export default function Hero() {
                 src={displayImage}
                 alt={`${personalInfo.name || 'Video Editor'} - Profile`}
                 className="hero-portrait-img"
+                decoding="async"
+                crossOrigin="anonymous"
                 onError={() => setImgError(true)}
               />
               <div className="hero-portrait-overlay" />

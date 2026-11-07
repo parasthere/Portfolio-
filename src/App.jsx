@@ -23,7 +23,7 @@ export default function App() {
   }, []);
   return (
     <div className="portfolio-app">
-      {/* Global Cinematic Purple Background System (Displays complete background.jpg across all sections) */}
+      {/* Global Cinematic Purple Background System (Pure CSS gradients & ambient glow) */}
       <GlobalBackground />
 
       {/* Subtle Interactive Floating Purple Particles */}
