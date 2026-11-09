@@ -91,7 +91,7 @@ export default function ColorGradingShowcase() {
             {/* After (Graded) Image Base Layer */}
             <img
               src={colorGrading.afterImage}
-              alt="Final Color Graded Shot"
+              alt="Final Cinematic Color Graded Shot - Color Science Showcase"
               className="comparison-img graded-img"
               draggable="false"
               decoding="async"
@@ -108,7 +108,7 @@ export default function ColorGradingShowcase() {
             >
               <img
                 src={colorGrading.beforeImage}
-                alt="Raw LOG Camera Shot"
+                alt="Raw LOG Camera Flat Profile - Before Color Grading"
                 className="comparison-img log-img"
                 draggable="false"
                 decoding="async"

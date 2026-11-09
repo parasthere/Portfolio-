@@ -44,7 +44,7 @@ export default function About() {
             <div className="about-photo-card">
               <img
                 src={displayImage}
-                alt={`${personalInfo.name || 'Video Editor'} - About`}
+                alt={`${personalInfo.name || 'Paras'} - Video Editor & Computer Science Engineer Portrait`}
                 className="about-photo-img"
                 loading="lazy"
                 decoding="async"

@@ -132,7 +132,7 @@ export default function Hero() {
             <div className="hero-portrait-frame">
               <img
                 src={displayImage}
-                alt={`${personalInfo.name || 'Video Editor'} - Profile`}
+                alt={`${personalInfo.name || 'Paras'} - Video Editor & Computer Science Engineer`}
                 className="hero-portrait-img"
                 decoding="async"
                 crossOrigin="anonymous"

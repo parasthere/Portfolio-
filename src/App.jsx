@@ -15,11 +15,9 @@ import Footer from './components/Footer';
 import { portfolioData } from './data/portfolioData';
 
 export default function App() {
-  // Keep browser tab title automatically synchronized with portfolioData
+  // Keep browser tab title synchronized with primary SEO title
   useEffect(() => {
-    const name = portfolioData.personalInfo?.name || 'Paras';
-    const title = portfolioData.personalInfo?.title || 'Video Editor & Software Engineer';
-    document.title = `${name} | ${title}`;
+    document.title = 'Paras | Video Editor & Computer Science Engineer';
   }, []);
   return (
     <div className="portfolio-app">
