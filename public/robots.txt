@@ -3,5 +3,5 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://portfolio-li597lppb-parasthere99-7894s-projects.vercel.app/sitemap.xml
+Sitemap: https://portfolio-eight-phi-85fugnzr92.vercel.app/sitemap.xml
 
