@@ -82,7 +82,7 @@ export default function WorkGallery() {
                   <div className="project-media-box">
                     <img
                       src={safeThumbnail}
-                      alt={`${project.title || 'Video project'} - Video Editing by Paras`}
+                      alt={`${project.title || 'Creative Video Project'} - Portfolio Edit by Paras`}
                       className="project-thumb"
                       loading="lazy"
                       decoding="async"

@@ -48,8 +48,8 @@ export default function Hero() {
             </div>
 
             {/* Large Name */}
-            <h1 className="hero-name">
-              I'm <span className="gradient-text">{personalInfo.name || 'Video Editor'}</span>
+            <h1 className="hero-name" aria-label="Paras | Video Editor & Computer Science Engineer">
+              I'm <span className="gradient-text">{personalInfo.name || 'Paras'}</span>
             </h1>
 
             {/* Title / Profession */}
@@ -65,7 +65,7 @@ export default function Hero() {
                   <span>{personalInfo.title}</span>
                 )
               ) : (
-                <span>VIDEO EDITOR & SOFTWARE ENGINEER</span>
+                <span>VIDEO EDITOR & COMPUTER SCIENCE ENGINEER</span>
               )}
             </div>
 
@@ -132,7 +132,7 @@ export default function Hero() {
             <div className="hero-portrait-frame">
               <img
                 src={displayImage}
-                alt={`${personalInfo.name || 'Paras'} - Video Editor & Computer Science Engineer`}
+                alt={`${personalInfo.name || 'Paras'} - Video Editor & Computer Science Engineer Portfolio`}
                 className="hero-portrait-img"
                 decoding="async"
                 crossOrigin="anonymous"

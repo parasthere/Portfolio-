@@ -32,13 +32,13 @@ export const portfolioData = {
     heroGreeting: "Welcome to my creative realm",
 
     // Large professional title shown in the Hero section
-    title: "VIDEO EDITOR & SOFTWARE ENGINEER",
+    title: "VIDEO EDITOR & COMPUTER SCIENCE ENGINEER",
 
     // Brand tagline shown under your name in the footer
-    tagline: "Crafting high-retention visual experiences, cinematic pacing, and stories that move audiences.",
+    tagline: "Crafting high-retention video edits, cinematic visual storytelling, and stories that move audiences.",
 
     // Short punchy intro used in the Hero section
-    heroIntro: "I transform raw footage into captivating visual narratives. Specializing in cinematic cuts, viral social content, and precision color grading that grabs attention from the first second.",
+    heroIntro: "I transform raw footage into captivating visual narratives. Specializing in cinematic video editing, viral reels, and creative projects with precision color grading and tempo.",
 
     // Availability badge text shown in Hero
     availabilityBadge: "Available for Freelance & Remote Projects",
@@ -53,12 +53,12 @@ export const portfolioData = {
 
     // Detailed text for the ABOUT ME section
     about: {
-      heading: "Behind The Timeline",
+      heading: "About Paras — Behind The Timeline",
       subheading: "Passion meets precision in every frame I cut.",
       paragraphs: [
-        "Hey! I'm Paras, a dedicated Video Editor and Visual Storyteller driven by the rhythm of seamless transitions, atmospheric sound design, and colors that evoke raw emotion.",
-        "Over the years, I have crafted high-impact content across cinematic narratives, high-octane automotive visuals, and high-retention social content. Whether it's high-velocity 9:16 vertical reels engineered for algorithmic retention, commercial films, or engaging YouTube long-forms, I focus on storytelling that hooks the audience.",
-        "Editing isn't just about cutting clips together; it's about crafting tempo, emotional arcs, and unforgettable visual identity. Let's make your next video impossible to ignore."
+        "Hey! I'm Paras, a dedicated Video Editor and Computer Science Engineer driven by creative visual storytelling, the rhythm of seamless transitions, and cinematic precision.",
+        "Over the years, my video editing portfolio has expanded across cinematic narratives, high-octane automotive visuals, and high-retention social content. Combining an engineering mindset with creative post-production, I craft high-velocity 9:16 vertical reels engineered for algorithmic retention, commercial films, and engaging YouTube projects that hook audiences from the first second.",
+        "To me, editing isn't just about cutting clips together; it's about crafting tempo, emotional arcs, and unforgettable visual identity. Welcome to my portfolio — let's make your next creative project impossible to ignore."
       ],
       // 4 Key craft pillars highlighted in the About section
       pillars: [
@@ -121,13 +121,13 @@ export const portfolioData = {
   workSection: {
     badge: "Featured Portfolio",
     title: "Crafted In The Cut",
-    subtitle: "A curated showcase of high-impact visual projects, cinematic grades, and viral social edits."
+    subtitle: "A curated showcase of creative video editing projects, cinematic grades, and viral social edits by Paras."
   },
 
   servicesSection: {
     badge: "Post-Production Services",
     title: "What I Bring To The Edit Suite",
-    subtitle: "Specialized solutions customized to turn views into subscribers, brand loyalty, and sales."
+    subtitle: "Specialized video editing solutions customized to turn views into subscribers, brand loyalty, and sales."
   },
 
   skillsSection: {
